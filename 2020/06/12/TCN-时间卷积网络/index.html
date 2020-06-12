@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    TCN-时间卷积网络 |
+    
+    记录生活,感悟人生</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+<link rel="stylesheet" href="/blog/css/technology.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/blog/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-TCN-时间卷积网络" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TCN-时间卷积网络
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time datetime="2020-06-12T08:36:43.000Z" itemprop="datePublished">2020-06-12</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/deeplearning/">deeplearning</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h3 id="1、引言"><a href="#1、引言" class="headerlink" title="1、引言"></a>1、引言</h3><p>时序问题的建模大家一般习惯性的采用循环神经网络（RNN）来建模，这是因为RNN天生的循环自回归的结构是对时间序列的很好的表示。传统的卷积神经网络一般认为不太适合时序问题的建模，这主要由于其卷积核大小的限制，不能很好的抓取长时的依赖信息。 但是最近也有很多的工作显示，特定的卷积神经网络结构也可以达到很好的效果，比如Goolgle提出的用来做语音合成的wavenet，Facebook提出的用来做翻译的卷积神经网络。这就带来一个问题，用卷积来做神经网络到底是只适用于特定的领域还是一种普适的模型？ 本文就带着这个问题，将一种特殊的卷积神经网络——时序卷积网络（Temporal convolutional network， TCN）与多种RNN结构相对比，发现在多种任务上TCN都能达到甚至超过RNN模型。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iotctech.github.io/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" data-id="ckbbzcp96000081io8kqn3alu"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/TCN/" rel="tag">TCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF/" rel="tag">时间卷积</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" rel="tag">网络模型</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/blog/2020/06/12/hello-world/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Hello World</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+
+<script src="/blog/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/blog/js/search.js"></script>
+
+
+
+
+<script src="/blog/js/technology.js"></script>
+
+
+  </div>
+</body>
+</html>
