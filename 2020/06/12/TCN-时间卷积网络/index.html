@@ -68,17 +68,17 @@
 
       
         <h3 id="1、引言"><a href="#1、引言" class="headerlink" title="1、引言"></a>1、引言</h3><p>时序问题的建模大家一般习惯性的采用循环神经网络（RNN）来建模，这是因为RNN天生的循环自回归的结构是对时间序列的很好的表示。传统的卷积神经网络一般认为不太适合时序问题的建模，这主要由于其卷积核大小的限制，不能很好的抓取长时的依赖信息。 但是最近也有很多的工作显示，特定的卷积神经网络结构也可以达到很好的效果，比如Goolgle提出的用来做语音合成的wavenet，Facebook提出的用来做翻译的卷积神经网络。这就带来一个问题，用卷积来做神经网络到底是只适用于特定的领域还是一种普适的模型？ 本文就带着这个问题，将一种特殊的卷积神经网络——时序卷积网络（Temporal convolutional network， TCN）与多种RNN结构相对比，发现在多种任务上TCN都能达到甚至超过RNN模型。</p>
-<h3 id="2、时序卷积神经网络"><a href="#2、时序卷积神经网络" class="headerlink" title="2、时序卷积神经网络"></a>2、时序卷积神经网络</h3><h4 id="2-1、因果卷积（Causal-Convolution）"><a href="#2-1、因果卷积（Causal-Convolution）" class="headerlink" title="2.1、因果卷积（Causal Convolution）"></a>2.1、因果卷积（Causal Convolution）</h4><p><img src="/blog/.io//1.jpeg" alt></p>
+<h3 id="2、时序卷积神经网络"><a href="#2、时序卷积神经网络" class="headerlink" title="2、时序卷积神经网络"></a>2、时序卷积神经网络</h3><h4 id="2-1、因果卷积（Causal-Convolution）"><a href="#2-1、因果卷积（Causal-Convolution）" class="headerlink" title="2.1、因果卷积（Causal Convolution）"></a>2.1、因果卷积（Causal Convolution）</h4><p><img src="/blog/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/1.jpeg" alt></p>
 <p>因果卷积可以用上图直观表示。 即对于上一层t时刻的值，只依赖于下一层t时刻及其之前的值。和传统的卷积神经网络的不同之处在于，因果卷积不能看到未来的数据，它是单向的结构，不是双向的。也就是说只有有了前面的因才有后面的果，是一种严格的时间约束模型，因此被成为因果卷积。</p>
 <h4 id="2-2、膨胀卷积（Dilated-Convolution）"><a href="#2-2、膨胀卷积（Dilated-Convolution）" class="headerlink" title="2.2、膨胀卷积（Dilated Convolution）"></a>2.2、膨胀卷积（Dilated Convolution）</h4><p>单纯的因果卷积还是存在传统卷积神经网络的问题，即对时间的建模长度受限于卷积核大小的，如果要想抓去更长的依赖关系，就需要线性的堆叠很多的层。为了解决这个问题，研究人员提出了膨胀卷积。如下图所示:</p>
-<p><img src="/blog/.io//2.jpeg" alt></p>
-<h4 id="2-3、残差链接（Residual-Connections）"><a href="#2-3、残差链接（Residual-Connections）" class="headerlink" title="2.3、残差链接（Residual Connections）"></a>2.3、残差链接（Residual Connections）</h4><p><img src="/blog/.io//3.jpeg" alt></p>
+<p><img src="/blog/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/2.jpeg" alt></p>
+<h4 id="2-3、残差链接（Residual-Connections）"><a href="#2-3、残差链接（Residual-Connections）" class="headerlink" title="2.3、残差链接（Residual Connections）"></a>2.3、残差链接（Residual Connections）</h4><p><img src="/blog/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/3.jpeg" alt></p>
 <p>残差链接被证明是训练深层网络的有效方法，它使得网络可以以跨层的方式传递信息。本文构建了一个残差块来代替一层的卷积。如上图所示，一个残差块包含两层的卷积和非线性映射，在每层中还加入了WeightNorm和Dropout来正则化网络。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://iotctech.github.io/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" data-id="ckbc1aamp0000mrio1wsc5mjz"
+      <a data-url="https://iotctech.github.io/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" data-id="ckbc1e5c80001xeio131lbv1l"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/TCN/" rel="tag">TCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF/" rel="tag">时间卷积</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" rel="tag">网络模型</a></li></ul>
