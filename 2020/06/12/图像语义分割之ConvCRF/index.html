@@ -1,30 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>TCN-时间卷积网络</title>
-    <url>/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<h3 id="1、引言"><a href="#1、引言" class="headerlink" title="1、引言"></a>1、引言</h3><p>时序问题的建模大家一般习惯性的采用循环神经网络（RNN）来建模，这是因为RNN天生的循环自回归的结构是对时间序列的很好的表示。传统的卷积神经网络一般认为不太适合时序问题的建模，这主要由于其卷积核大小的限制，不能很好的抓取长时的依赖信息。 但是最近也有很多的工作显示，特定的卷积神经网络结构也可以达到很好的效果，比如Goolgle提出的用来做语音合成的wavenet，Facebook提出的用来做翻译的卷积神经网络。这就带来一个问题，用卷积来做神经网络到底是只适用于特定的领域还是一种普适的模型？ 本文就带着这个问题，将一种特殊的卷积神经网络——时序卷积网络（Temporal convolutional network， TCN）与多种RNN结构相对比，发现在多种任务上TCN都能达到甚至超过RNN模型。</p>
-<h3 id="2、时序卷积神经网络"><a href="#2、时序卷积神经网络" class="headerlink" title="2、时序卷积神经网络"></a>2、时序卷积神经网络</h3><h4 id="2-1、因果卷积（Causal-Convolution）"><a href="#2-1、因果卷积（Causal-Convolution）" class="headerlink" title="2.1、因果卷积（Causal Convolution）"></a>2.1、因果卷积（Causal Convolution）</h4><p><img src="1.jpeg" alt></p>
-<p>因果卷积可以用上图直观表示。 即对于上一层t时刻的值，只依赖于下一层t时刻及其之前的值。和传统的卷积神经网络的不同之处在于，因果卷积不能看到未来的数据，它是单向的结构，不是双向的。也就是说只有有了前面的因才有后面的果，是一种严格的时间约束模型，因此被成为因果卷积。</p>
-<h4 id="2-2、膨胀卷积（Dilated-Convolution）"><a href="#2-2、膨胀卷积（Dilated-Convolution）" class="headerlink" title="2.2、膨胀卷积（Dilated Convolution）"></a>2.2、膨胀卷积（Dilated Convolution）</h4><p>单纯的因果卷积还是存在传统卷积神经网络的问题，即对时间的建模长度受限于卷积核大小的，如果要想抓去更长的依赖关系，就需要线性的堆叠很多的层。为了解决这个问题，研究人员提出了膨胀卷积。如下图所示:</p>
-<p><img src="2.jpeg" alt></p>
-<h4 id="2-3、残差链接（Residual-Connections）"><a href="#2-3、残差链接（Residual-Connections）" class="headerlink" title="2.3、残差链接（Residual Connections）"></a>2.3、残差链接（Residual Connections）</h4><p><img src="3.jpeg" alt></p>
-<p>残差链接被证明是训练深层网络的有效方法，它使得网络可以以跨层的方式传递信息。本文构建了一个残差块来代替一层的卷积。如上图所示，一个残差块包含两层的卷积和非线性映射，在每层中还加入了WeightNorm和Dropout来正则化网络。</p>
-]]></content>
-      <categories>
-        <category>deeplearning</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>网络模型</tag>
-        <tag>TCN</tag>
-        <tag>时间卷积</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像语义分割之ConvCRF</title>
-    <url>/blog/2020/06/12/%E5%9B%BE%E5%83%8F%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B9%8BConvCRF/</url>
-    <content><![CDATA[<h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>语义分割等结构化预测任务可以从条件随机场等概率图模型获取很多优势，但由于条件随机场的训练速度及训练难度，目前研究者基本上都仅使用卷积网络进行处理。本文提出了一种卷积条件随机场，它能以卷积运算的方式解决 CRF 的两个大问题，并结合 CNN 实现更好的语义分割效果。</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    图像语义分割之ConvCRF |
+    
+    记录生活,感悟人生</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+<link rel="stylesheet" href="/blog/css/technology.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/blog/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-图像语义分割之ConvCRF" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图像语义分割之ConvCRF
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/blog/2020/06/12/%E5%9B%BE%E5%83%8F%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B9%8BConvCRF/" class="article-date">
+  <time datetime="2020-06-12T10:55:26.000Z" itemprop="datePublished">2020-06-12</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/deeplearning/">deeplearning</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>语义分割等结构化预测任务可以从条件随机场等概率图模型获取很多优势，但由于条件随机场的训练速度及训练难度，目前研究者基本上都仅使用卷积网络进行处理。本文提出了一种卷积条件随机场，它能以卷积运算的方式解决 CRF 的两个大问题，并结合 CNN 实现更好的语义分割效果。</p>
 <h3 id="2、面临问题"><a href="#2、面临问题" class="headerlink" title="2、面临问题"></a>2、面临问题</h3><p>语义图像分割旨在为图像中的每个像素生成分类标签，是视觉感知中的一个重要任务。卷积神经网络已在解决语义分割任务上取得了很好的效果 。虽然深层神经网络在提取局部特征和利用小感受野进行良好预测方面效果显著，但它们缺乏利用全局上下文信息的能力，无法直接建模预测之间的相互作用。因此，有人认为，简单的前馈卷积神经网络也许并不是完成类似语义分割等结构化预测任务的最佳选择 。为了解决上述问题，一些研究者成功地将卷积神经网络的有效性与条件随机场的建模能力相结合，以获得更好的性能 。尽管结构化模型的成功是无可争议的，但在最近的方法和研究成果却鲜有人问津。</p>
 <p>我们认为，导致这一现状的主要原因是条件随机场的学习速度非常缓慢，且难以优化。如何为条件随机场等结构化组件学习特征仍然是一个开放性研究问题，许多方法完全依赖于手动设定的高斯特征。此外，条件随机场的推断比卷积神经网络的推断要慢两个数量级，这使得基于条件随机场的方法在许多实际应用中的运行速度很慢。而当前条件随机场较长的训练时间，也使得人们无法进行更加深入的研究和实验。</p>
 <p>为了解决这两个问题，我们提出将条件独立性这一强假设添加到现有的全连接条件随机场（FullCRF）框架中。这使得我们可以将大部分推断重新表达为可以在 GPU 上高效实现的卷积操作，我们称之为卷积条件随机场（ConvCRF）。反向传播可用于训练 ConvCRF 的所有参数，ConvCRF 中的推断可以在不到 10ms 的时间内完成。与 FullCRF 相比，可以获得一到两个数量级的速度提升。我们相信，训练和推断上的速度提升将大大有利于未来的研究，同时我们也希望它可以帮助条件随机场重新成为解决结构化任务的流行方法。</p>
@@ -48,13 +91,70 @@
 <p><img src="6.jpg" alt></p>
 <p>图 3：使用解耦训练策略在 Pascal VOC 数据下的结果可视化。示例 2 和 4 描述了条件随机场无法改进一元运算（unary）的失败情况。</p>
 <p>对于具有挑战性的语义图像分割任务，最有效的模型传统上将条件随机场（CRF）的结构化建模能力与卷积神经网络的特征提取能力结合起来。然而，在最近的工作中中，使用条件随机场进行后处理已经不再受到人们青睐。我们认为这主要是由于条件随机场训练和推断速度太过缓慢以及其参数学习的难度所致。为了克服这两个问题，我们提出将条件独立的假设添加到全连接条件随机场的框架中。这使得我们可以在 GPU 上高效地使用卷积操作重新进行推断。这样做可以将推断和训练加速超过 100 倍。卷积条件随机场的所有参数都可以使用反向传播轻松进行优化。</p>
-]]></content>
-      <categories>
-        <category>deeplearning</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>语义分割</tag>
-      </tags>
-  </entry>
-</search>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iotctech.github.io/blog/2020/06/12/%E5%9B%BE%E5%83%8F%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B9%8BConvCRF/" data-id="ckbc3uqfn0000v8io86z540rn"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" rel="tag">语义分割</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/blog/2020/06/12/TCN-%E6%97%B6%E9%97%B4%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">TCN-时间卷积网络</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+
+<script src="/blog/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/blog/js/search.js"></script>
+
+
+
+
+<script src="/blog/js/technology.js"></script>
+
+
+  </div>
+</body>
+</html>
