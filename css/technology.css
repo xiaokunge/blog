@@ -80,7 +80,7 @@
   height: 100%; 
 }
 .technology-circle .wrap .inner {
-  background:url('/images/outer-ring.png') no-repeat;
+  background:url('/blog/images/outer-ring.png') no-repeat;
   background-size: contain;
   position: absolute;
   top: 0;
@@ -90,7 +90,7 @@
   animation: technology-circle_rotate 80s linear 0s infinite;
 }
 .technology-circle .wrap .inner .middle {
-  background:url('/images/middle-ring.png') no-repeat;
+  background:url('/blog/images/middle-ring.png') no-repeat;
   background-size: contain;
   position: absolute;
   left: 0;
@@ -105,7 +105,7 @@
 .technology-circle .wrap .inner::after {
   content: ' ';
   display: block;
-  background:url('/images/middle-ring-2.png') no-repeat;
+  background:url('/blog/images/middle-ring-2.png') no-repeat;
   background-size: cover;
   position: absolute;
   top: 0;
@@ -120,7 +120,7 @@
 .technology-circle .wrap .inner::before {
   content: ' ';
   display: block;
-  background:url('/images/inner-ring.png') no-repeat;
+  background:url('/blog/images/inner-ring.png') no-repeat;
   background-size: cover;
   position: absolute;
   top: 0;

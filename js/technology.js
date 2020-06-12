@@ -60,7 +60,7 @@
   };
   // 建议在移动端不初始化，其实 /search.xml 文件还挺大的，
   if ($('.local-search').size()) {
-    $.getScript('/js/search.js', function () {
+    $.getScript('/blog/js/search.js', function () {
       searchFunc("/search.xml", 'local-search-input', 'local-search-result');
     });
   }
